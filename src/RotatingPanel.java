@@ -10,10 +10,14 @@ public class RotatingPanel extends JPanel {
 	
 	public RotatingPanel(){
 		shape = new Line(Direction.CLOCKWISE, .01, Math.sqrt(getHeight()*getHeight()+getWidth()*getWidth()));
+		double theta = shape.getTheta();
 	}
-	public void changeShape(){
-		shape = new Polygon(Direction.CLOCKWISE, , , )
-		
+	public void changeShape(int sides){
+		double radius = Math.sqrt(getHeight()*getHeight()+getWidth()*getWidth());
+		if(sides>=3){
+			shape = new Polygon(Direction.CLOCKWISE, sides, radius, .01, shape.getTheta());
+		}
+		repaint();
 	}
 	
 	public void paintComponent(Graphics g){
