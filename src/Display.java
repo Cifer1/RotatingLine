@@ -60,7 +60,7 @@ public class Display extends JFrame {
 		JPanel mainPanel = new RotatingPanel();
 		contentPane.add(mainPanel, BorderLayout.CENTER);
 		
-		Timer timer = new Timer(100, new ActionListener(){
+		Timer timer = new Timer(1000, new ActionListener(){
 			public void actionPerformed(ActionEvent arg0){
 				((RotatingPanel)mainPanel).rotate();
 			}
@@ -142,10 +142,8 @@ public class Display extends JFrame {
 		speedSlider.setMaximum(1000);
 		speedPanel.add(speedSlider);
 		speedSlider.addChangeListener(new ChangeListener() {
-			
 			public void stateChanged(ChangeEvent arg0) {
-				((RotatingPanel)mainPanel).setInterval(speedSlider.getValue()*.001);
-
+				timer.setDelay((speedSlider.getValue()));
 			}
 		});
 		
