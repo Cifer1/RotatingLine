@@ -27,6 +27,11 @@ public class RotatingPanel extends JPanel {
 		shape.rotate();
 		repaint();
 	}
+	public void setInterval(double interval){
+		shape.setInterval(interval);
+		repaint();
+	}
+	
 	
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);

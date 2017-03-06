@@ -15,6 +15,8 @@ import javax.swing.JRadioButton;
 import javax.swing.JSlider;
 import javax.swing.JTabbedPane;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.Timer;
@@ -115,14 +117,21 @@ public class Display extends JFrame {
 		JLabel label = new JLabel("Sides");
 		sidesPanel.add(label);
 		
-		JSlider sideSlider = new JSlider();
-		sideSlider.setToolTipText("");
+		JSlider sideSlider = new JSlider();		
 		sideSlider.setSnapToTicks(true);
+		sideSlider.setToolTipText("");
 		sideSlider.setPaintTicks(true);
 		sideSlider.setPaintLabels(true);
 		sideSlider.setMinimum(2);
 		sideSlider.setMaximum(12);
 		sidesPanel.add(sideSlider);
+	
+	
+	sideSlider.addChangeListener(new ChangeListener() {
+		public void stateChanged(ChangeEvent arg0) {
+			((RotatingPanel)mainPanel).changeShape((int)sideSlider.getValue());
+		}
+	});
 		
 		JPanel speedPanel = new JPanel();
 		tabbedPane.addTab("Speed", null, speedPanel, null);
@@ -132,12 +141,22 @@ public class Display extends JFrame {
 		speedSlider.setMinimum(1);
 		speedSlider.setMaximum(1000);
 		speedPanel.add(speedSlider);
+		speedSlider.addChangeListener(new ChangeListener() {
+			
+			public void stateChanged(ChangeEvent arg0) {
+				((RotatingPanel)mainPanel).setInterval(speedSlider.getValue()*.001);
+
+			}
+		});
+		
+		
 		
 		JPanel colorPanel = new JPanel();
 		tabbedPane.addTab("Color", null, colorPanel, null);
 		
 		JButton lineColorButton = new JButton("Set Line Color");
 		colorPanel.add(lineColorButton);
+		
 		
 		JButton backgroundButton = new JButton("Set Background Color");
 		colorPanel.add(backgroundButton);
