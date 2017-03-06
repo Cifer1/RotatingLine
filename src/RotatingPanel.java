@@ -19,8 +19,17 @@ public class RotatingPanel extends JPanel {
 		}
 		repaint();
 	}
+	public void setDirection(Direction d){
+		shape.setCurrDirection(d);
+		repaint();
+	}
+	public void rotate(){
+		shape.rotate();
+		repaint();
+	}
 	
 	public void paintComponent(Graphics g){
+		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
 		shape.setRadius(Math.sqrt(getHeight()*getHeight()+getWidth()*getWidth()));
 		ArrayList<CartesianPoint> vertices= shape.currentState();

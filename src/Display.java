@@ -50,17 +50,29 @@ public class Display extends JFrame {
 	public Display() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+		setBounds(100,100,450,300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
+		JPanel mainPanel = new RotatingPanel();
+		contentPane.add(mainPanel, BorderLayout.CENTER);
+		
+		Timer timer = new Timer(100, new ActionListener(){
+			public void actionPerformed(ActionEvent arg0){
+				((RotatingPanel)mainPanel).rotate();
+			}
+
+		});
 		
 		JPanel controlPanel = new JPanel();
 		contentPane.add(controlPanel, BorderLayout.NORTH);
 		
 		JRadioButton clockwiseButton = new JRadioButton("Clockwise");
+		clockwiseButton.setSelected(true);
 		clockwiseButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				((RotatingPanel)mainPanel).setDirection(Direction.CLOCKWISE);
 			}
 		});
 		buttonGroup.add(clockwiseButton);
@@ -69,17 +81,30 @@ public class Display extends JFrame {
 		JRadioButton counterclockwiseButton = new JRadioButton("Counterclockwise");
 		counterclockwiseButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				((RotatingPanel)mainPanel).setDirection(Direction.COUNTERCLOCKWISE);
+
 			}
 		});
 		buttonGroup.add(counterclockwiseButton);
 		controlPanel.add(counterclockwiseButton);
 		
 		JButton startStopButton = new JButton("Start");
+		startStopButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(startStopButton.getText()=="Start"){
+					startStopButton.setText("Stop");
+					timer.start();
+				}
+				else{
+					startStopButton.setText("Start");
+					timer.stop();
+				}
+			}
+		});
 		controlPanel.add(startStopButton);
 		
 		
-		JPanel panel = new RotatingPanel();
-		contentPane.add(panel, BorderLayout.CENTER);
+		
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		contentPane.add(tabbedPane, BorderLayout.SOUTH);
