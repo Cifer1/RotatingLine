@@ -60,7 +60,7 @@ public class Display extends JFrame {
 		JPanel mainPanel = new RotatingPanel();
 		contentPane.add(mainPanel, BorderLayout.CENTER);
 		
-		Timer timer = new Timer(1000, new ActionListener(){
+		Timer timer = new Timer(10, new ActionListener(){
 			public void actionPerformed(ActionEvent arg0){
 				((RotatingPanel)mainPanel).rotate();
 			}
@@ -125,11 +125,12 @@ public class Display extends JFrame {
 		sideSlider.setMinimum(2);
 		sideSlider.setMaximum(12);
 		sidesPanel.add(sideSlider);
-	
+		sideSlider.setValue(2);
 	
 	sideSlider.addChangeListener(new ChangeListener() {
 		public void stateChanged(ChangeEvent arg0) {
-			((RotatingPanel)mainPanel).changeShape((int)sideSlider.getValue());
+			JSlider source = (JSlider)arg0.getSource();
+			((RotatingPanel)mainPanel).changeShape(source.getValue());
 		}
 	});
 		
@@ -137,9 +138,11 @@ public class Display extends JFrame {
 		tabbedPane.addTab("Speed", null, speedPanel, null);
 		
 		JSlider speedSlider = new JSlider();
-		speedSlider.setValue(1);
 		speedSlider.setMinimum(1);
 		speedSlider.setMaximum(1000);
+		speedSlider.setInverted(true);
+		speedSlider.setValue(timer.getDelay());
+
 		speedPanel.add(speedSlider);
 		speedSlider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {

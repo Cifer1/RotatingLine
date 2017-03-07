@@ -13,9 +13,13 @@ public class RotatingPanel extends JPanel {
 		double theta = shape.getTheta();
 	}
 	public void changeShape(int sides){
-		double radius = Math.sqrt(getHeight()*getHeight()+getWidth()*getWidth());
+		
 		if(sides>=3){
-			shape = new Polygon(Direction.CLOCKWISE, sides, radius, .01, shape.getTheta());
+			double radius = Math.min(getHeight()/2.0, getWidth()/2.0);	
+			shape = new Polygon(shape.getCurrDirection(), sides, .01, radius, shape.getTheta());
+		}
+		else{
+			shape = new Line(shape.getCurrDirection(), .01, Math.sqrt(getHeight()*getHeight()+getWidth()*getWidth()), shape.getTheta());
 		}
 		repaint();
 	}
@@ -36,7 +40,12 @@ public class RotatingPanel extends JPanel {
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
-		shape.setRadius(Math.sqrt(getHeight()*getHeight()+getWidth()*getWidth()));
+		if(shape instanceof Line){
+			shape.setRadius(Math.sqrt(getHeight()*getHeight()+getWidth()*getWidth()));
+		}
+		else{
+			shape.setRadius(Math.min(getHeight()/2.0, getWidth()/2.0));
+		}
 		ArrayList<CartesianPoint> vertices= shape.currentState();
 		double heightScale = getHeight()/2.0;
 		double widthScale = getWidth() / 2.0;
