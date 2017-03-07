@@ -16,10 +16,10 @@ public class RotatingPanel extends JPanel {
 		
 		if(sides>=3){
 			double radius = Math.min(getHeight()/2.0, getWidth()/2.0);	
-			shape = new Polygon(shape.getCurrDirection(), sides, .01, radius, shape.getTheta());
+			shape = new Polygon(shape.getCurrDirection(), sides, radius, 0.01, shape.getTheta());
 		}
 		else{
-			shape = new Line(shape.getCurrDirection(), .01, Math.sqrt(getHeight()*getHeight()+getWidth()*getWidth()), shape.getTheta());
+			shape = new Line(shape.getCurrDirection(), Math.sqrt(getHeight()*getHeight()+getWidth()*getWidth()),0.01, shape.getTheta());
 		}
 		repaint();
 	}
