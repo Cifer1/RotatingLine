@@ -143,8 +143,8 @@ public class Display extends JFrame {
 		speedPanel.add(speedSlider);
 		speedSlider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
-				JSlider source = (JSlider)arg0.getSource();
-				timer.setDelay((int)source.getValue());
+				JSlider source= (JSlider)arg0.getSource();
+				timer.setDelay((int)(source.getValue()));
 			}
 		});
 		
