@@ -17,8 +17,10 @@ import javax.swing.JTabbedPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JColorChooser;
 import javax.swing.Timer;
 
 
@@ -157,12 +159,26 @@ public class Display extends JFrame {
 		tabbedPane.addTab("Color", null, colorPanel, null);
 		
 		JButton lineColorButton = new JButton("Set Line Color");
+		lineColorButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Color initialColor = Color.BLACK;
+				Color color = JColorChooser.showDialog(mainPanel, "Choose", initialColor);
+				mainPanel.setForeground(color);
+			}
+		});
 		colorPanel.add(lineColorButton);
 		
 		
 		JButton backgroundButton = new JButton("Set Background Color");
 		colorPanel.add(backgroundButton);
-		
+		backgroundButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Color initialColor = Color.GRAY;
+				Color color = JColorChooser.showDialog(mainPanel, "Choose", initialColor);
+				mainPanel.setBackground(color);			
+			}
+		});
+
 	}
 
 }
