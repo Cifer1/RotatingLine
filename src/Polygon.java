@@ -13,7 +13,7 @@ public class Polygon implements Rotatable {
 	private double radius;
 	private double theta;
 	
-	public Polygon(Direction d, int sides, double radius, double interval){
+	public Polygon(Direction d, int sides, double interval, double radius){
 		currDirection = d;
 		this.sides = sides;
 		this.radius = radius;
@@ -21,7 +21,7 @@ public class Polygon implements Rotatable {
 		this.interval = interval;
 		
 	}
-	public Polygon(Direction d, int sides, double radius, double interval, double theta){
+	public Polygon(Direction d, int sides, double interval, double radius, double theta){
 		currDirection = d;
 		this.sides = sides;
 		this.radius = radius;

@@ -141,7 +141,7 @@ public class Display extends JFrame {
 		
 		JSlider speedSlider = new JSlider();
 		speedSlider.setMinimum(1);
-		speedSlider.setMaximum(1000);
+		speedSlider.setMaximum(100);
 		speedSlider.setInverted(true);
 		speedSlider.setValue(timer.getDelay());
 
