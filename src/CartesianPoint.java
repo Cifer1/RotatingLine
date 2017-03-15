@@ -3,13 +3,13 @@ public class CartesianPoint {
 	private double x;
 	private double y;
 	
-	public CartesianPoint(double x, double y){
-		this.x = x;
-		this.y = y;
+	public CartesianPoint(double[] point){
+		this.x = point[0];
+		this.y = point[1];
 	}
-	
-	public PolarPoint toPolar(){
-		return new PolarPoint(new double[]{x,y});
+	public CartesianPoint(double r, double theta){
+		this.x = r * Math.cos(theta);
+		this.y = r * Math.sin(theta);
 	}
 	public String toString(){
 		return "(" + x + "," + y + ")";

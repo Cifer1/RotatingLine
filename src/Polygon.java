@@ -72,7 +72,7 @@ public class Polygon implements Rotatable {
 		// TODO Auto-generated method stub
 		ArrayList<CartesianPoint> curr = new ArrayList<CartesianPoint>();
 		for(int i = 1; i < sides+1; i++){
-			curr.add(new PolarPoint(radius, theta + (Math.PI * 2)/sides *i).toCartesian());
+			curr.add(new CartesianPoint(radius, theta + (Math.PI * 2)/sides *i));
 		}
 		return curr;
 	}

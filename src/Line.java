@@ -56,8 +56,7 @@ public class Line implements Rotatable {
 		}
 	}
 	public ArrayList<CartesianPoint> nextState(){ // assumes center of graph is the center of screen/circumscribed circle
-		this.rotate();
-				
+		this.rotate();	
 		return currentState();
 	}
 	public void rotate() {
@@ -68,8 +67,8 @@ public class Line implements Rotatable {
 	public ArrayList<CartesianPoint> currentState() {
 		// TODO Auto-generated method stub
 		ArrayList<CartesianPoint> result = new ArrayList<CartesianPoint>();
-		result.add(new PolarPoint(radius,theta).toCartesian());
-		result.add(new PolarPoint(-radius, theta).toCartesian());
+		result.add(new CartesianPoint(radius,theta));
+		result.add(new CartesianPoint(-radius, theta));
 		return result;
 	}
 	
