@@ -1,3 +1,4 @@
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -26,9 +27,17 @@ import javax.swing.Timer;
 
 
 
+/*
+ * Polygon is a Rotatable object that represents a 2D regular polygon. Private data includes the direction of rotation for the Polygon, 
+ * the vertices of the polygon relative to the center of the circumscribed circle, and the interval (in radians) at which the 
+ * polygon rotates. The only constructor takes in the initial direction, # of sides, the radius of the circumscribed circle, and the interval
+ * at which the polygon rotates. Methods include rotating the polygon one interval, finding the next set of vertices, and getting/setting
+ * the current direction of rotation and interval of rotation. 
+ * Display Class. Private data is a JPanel and ButtonGroup. 
+ */
 
 public class Display extends JFrame {
-
+	
 	private JPanel contentPane;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 
@@ -62,6 +71,8 @@ public class Display extends JFrame {
 		JPanel mainPanel = new RotatingPanel();
 		contentPane.add(mainPanel, BorderLayout.CENTER);
 		
+		// creating the timer and rotating the mainpanel
+		
 		Timer timer = new Timer(10, new ActionListener(){
 			public void actionPerformed(ActionEvent arg0){
 				((RotatingPanel)mainPanel).rotate();
@@ -72,6 +83,8 @@ public class Display extends JFrame {
 		JPanel controlPanel = new JPanel();
 		contentPane.add(controlPanel, BorderLayout.NORTH);
 		
+		
+		// creating the clockwise and counterclockwise buttons. When pressed, the mainpanel sets the direction to the respective button pressed
 		JRadioButton clockwiseButton = new JRadioButton("Clockwise");
 		clockwiseButton.setSelected(true);
 		clockwiseButton.addActionListener(new ActionListener() {
@@ -92,6 +105,7 @@ public class Display extends JFrame {
 		buttonGroup.add(counterclockwiseButton);
 		controlPanel.add(counterclockwiseButton);
 		
+		// creating the start/stop buttons. When pressed, the timer starts/stops according to the respective button pressed
 		JButton startStopButton = new JButton("Start");
 		startStopButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -113,6 +127,7 @@ public class Display extends JFrame {
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		contentPane.add(tabbedPane, BorderLayout.SOUTH);
 		
+		// Creating a side slider, and speed slider. 
 		JPanel sidesPanel = new JPanel();
 		tabbedPane.addTab("Sides", null, sidesPanel, null);
 		
@@ -128,7 +143,7 @@ public class Display extends JFrame {
 		sideSlider.setMaximum(12);
 		sidesPanel.add(sideSlider);
 		sideSlider.setValue(2);
-	
+	// As the side slider is changed, the mainpanel calls the changeShape method from Rotating Panel. 
 	sideSlider.addChangeListener(new ChangeListener() {
 		public void stateChanged(ChangeEvent arg0) {
 			JSlider source = (JSlider)arg0.getSource();
@@ -144,7 +159,7 @@ public class Display extends JFrame {
 		speedSlider.setMaximum(100);
 		speedSlider.setInverted(true);
 		speedSlider.setValue(timer.getDelay());
-
+		//As the speed slider changes, the timer sets a delay. 
 		speedPanel.add(speedSlider);
 		speedSlider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
@@ -154,13 +169,15 @@ public class Display extends JFrame {
 		});
 		
 		
-		
+		// creating 2 buttons for line color and background color
 		JPanel colorPanel = new JPanel();
 		tabbedPane.addTab("Color", null, colorPanel, null);
 		
 		JButton lineColorButton = new JButton("Set Line Color");
 		lineColorButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				// depending on the color chosen by the user, setting the mainPanel's foreground(which is the shape) to that color
+				// The initial color is set to black
 				Color initialColor = Color.BLACK;
 				Color color = JColorChooser.showDialog(mainPanel, "Choose", initialColor);
 				mainPanel.setForeground(color);
@@ -173,6 +190,8 @@ public class Display extends JFrame {
 		colorPanel.add(backgroundButton);
 		backgroundButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				// depending on the color chosen by the user, setting the mainPanel's background to that color
+				// the initial color is set to gray
 				Color initialColor = Color.GRAY;
 				Color color = JColorChooser.showDialog(mainPanel, "Choose", initialColor);
 				mainPanel.setBackground(color);			
