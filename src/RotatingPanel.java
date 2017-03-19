@@ -47,7 +47,7 @@ public class RotatingPanel extends JPanel {
 		repaint();
 	}
 	
-	// Method will paint the lines from each vertex to the next based on the arraylist received
+	// Method will paint the lines from each vertex to the next based on the arraylist of points received received
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
@@ -59,12 +59,13 @@ public class RotatingPanel extends JPanel {
 			// if not, sets the radius using the height/width
 			shape.setRadius(Math.min(getHeight()/2.0, getWidth()/2.0));
 		}
-		// gets the array list of cartesian points
+		// gets the array list of cartesian points from the shape
 		ArrayList<CartesianPoint> vertices= shape.currentState();
 		double heightScale = getHeight()/2.0;
 		double widthScale = getWidth() / 2.0;
 		for(int i = 0; i<vertices.size()-1; i++){
 			// draws the line from each vertex to the next until to the second to last one
+			// uses the drawline function which draws a line from one point to another. 
 			g2.drawLine(
 			(int)(Math.round(vertices.get(i).getX()+widthScale)), 
 			(int)(Math.round(vertices.get(i).getY()+heightScale)), 

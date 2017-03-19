@@ -1,3 +1,9 @@
+/*
+ * In the display class, the private data is a content pane and button group. We create start/stop buttons, clockwise and counterclockwise radio buttons,
+ * speed/color/side labels, color buttons, and speed and side sliders. We also create a JPanel on which we draw everything, and 
+ * and create a mainPanel on which all the drawing occurs. 
+ */
+
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -23,9 +29,6 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
 import javax.swing.Timer;
-
-
-
 
 
 public class Display extends JFrame {
@@ -54,7 +57,7 @@ public class Display extends JFrame {
 	 */
 	public Display() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+		// Creating the contentPane
 		setBounds(100,100,450,300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -126,6 +129,7 @@ public class Display extends JFrame {
 		JLabel label = new JLabel("Sides");
 		sidesPanel.add(label);
 		
+		// Creating the slider and setting minimums and maximums
 		JSlider sideSlider = new JSlider();		
 		sideSlider.setSnapToTicks(true);
 		sideSlider.setToolTipText("");
@@ -146,6 +150,7 @@ public class Display extends JFrame {
 		JPanel speedPanel = new JPanel();
 		tabbedPane.addTab("Speed", null, speedPanel, null);
 		
+		// Creating the slider and setting the minimums and maximums. 
 		JSlider speedSlider = new JSlider();
 		speedSlider.setMinimum(1);
 		speedSlider.setMaximum(100);
@@ -165,6 +170,7 @@ public class Display extends JFrame {
 		JPanel colorPanel = new JPanel();
 		tabbedPane.addTab("Color", null, colorPanel, null);
 		
+		// When either button is clicked, a menu of colorways pops up for the user to pick from. 
 		JButton lineColorButton = new JButton("Set Line Color");
 		lineColorButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
