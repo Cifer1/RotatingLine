@@ -27,14 +27,6 @@ import javax.swing.Timer;
 
 
 
-/*
- * Polygon is a Rotatable object that represents a 2D regular polygon. Private data includes the direction of rotation for the Polygon, 
- * the vertices of the polygon relative to the center of the circumscribed circle, and the interval (in radians) at which the 
- * polygon rotates. The only constructor takes in the initial direction, # of sides, the radius of the circumscribed circle, and the interval
- * at which the polygon rotates. Methods include rotating the polygon one interval, finding the next set of vertices, and getting/setting
- * the current direction of rotation and interval of rotation. 
- * Display Class. Private data is a JPanel and ButtonGroup. 
- */
 
 public class Display extends JFrame {
 	
