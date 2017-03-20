@@ -20,6 +20,7 @@ public class RotatingPanel extends JPanel {
 	}
 	// this method has a parameter for sides. If the # of sides is >=3 it gets a new radius and makes a new shape with the given number of sides
 	// otherwise, it creates a line with a radius, theta, and interval already given
+	// The O(n) for changeShape would be n. 
 	public void changeShape(int sides){
 		
 		if(sides>=3){
@@ -48,6 +49,7 @@ public class RotatingPanel extends JPanel {
 	}
 	
 	// Method will paint the lines from each vertex to the next based on the arraylist of points received received
+	// The O(n) for this method would be n. 
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
