@@ -11,7 +11,7 @@ public class CartesianPoint {
 	public CartesianPoint(double[] point){
 		/*
 		 * This ctor takes in a double array representing a point on the xy-plane and sets the x and y components of the new object
-		 * to the value of the first and second indices of the input array, respectively.
+		 * to the value of the first and second indices of the input array, respectively. O(1)
 		 */
 		this.x = point[0];
 		this.y = point[1];
@@ -19,33 +19,33 @@ public class CartesianPoint {
 	public CartesianPoint(double r, double theta){
 		/*
 		 * This ctor takes in a radius and theta representing a polar point, and calculates the Cartesian equivalent using 
-		 * the formulas x = r * cos(theta) and y = r * sin(theta). 
+		 * the formulas x = r * cos(theta) and y = r * sin(theta). O(1)
 		 */
 		this.x = r * Math.cos(theta);
 		this.y = r * Math.sin(theta);
 	}
 	public String toString(){
-		// represents the point in a String in the format (x,y)
+		// represents the point in a String in the format (x,y), O(1)
 		return "(" + x + "," + y + ")";
 	}
 	public double getX() {
-		// getter for x component of point, returns double x
+		// getter for x component of point, returns double x, O(1)
 		return x;
 	}
 
 	public void setX(double x) {
-		// setter for x component of point, takes in double x
+		// setter for x component of point, takes in double x, O(1)
 		this.x = x;
 	}
 
 	public double getY() {
-		// getter for y component of point, returns double y
+		// getter for y component of point, returns double y, O(1)
 
 		return y;
 	}
 
 	public void setY(double y) {
-		// setter for y component of point, takes in double y
+		// setter for y component of point, takes in double y, O(1)
 
 		this.y = y;
 	}

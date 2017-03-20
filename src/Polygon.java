@@ -17,7 +17,7 @@ public class Polygon implements Rotatable {
 		/* 
 		 * This constructor takes in Direction d (direction of rotation), int sides (# of sides on the polygon), double interval
 		 * (how many radians the shape shifts every rotation), and double radius (radius of the circumscribed circle), and sets
-		 * the relevant private data. Initial angle theta is set to 0.
+		 * the relevant private data. Initial angle theta is set to 0. O(1)
 		 */
 		currDirection = d;
 		this.sides = sides;
@@ -30,7 +30,7 @@ public class Polygon implements Rotatable {
 		/* 
 		 * This constructor takes in Direction d (direction of rotation), int sides (# of sides on the polygon), double interval
 		 * (how many radians the shape shifts every rotation), double radius (radius of the circumscribed circle), and double theta 
-		 * (initial angle of the first vertex compared to x axis), and sets the relevant private data.
+		 * (initial angle of the first vertex compared to x axis), and sets the relevant private data. O(1)
 		 */
 		currDirection = d;
 		this.sides = sides;
@@ -43,7 +43,7 @@ public class Polygon implements Rotatable {
 	public void rotate() {
 		/*
 		 * rotate() shifts the position of the polygon by incrementing or decrementing the current angle theta of the first vertex.
-		 * Incrementing happens when the shape is rotating clockwise, and decrementing happens when the shape is rotating counterclockwise.
+		 * Incrementing happens when the shape is rotating clockwise, and decrementing happens when the shape is rotating counterclockwise. O(1)
 		 */
 		if (currDirection == Direction.CLOCKWISE) theta+=interval;
 		else theta-=interval;
@@ -53,7 +53,7 @@ public class Polygon implements Rotatable {
 	public ArrayList<CartesianPoint> nextState() {
 		/*
 		 * nextState() rotates the Polygon and then returns the state of the Polygon post rotation in the form of an ArrayList of
-		 * CartesianPoints that represent individual vertices of the polygon. 
+		 * CartesianPoints that represent individual vertices of the polygon. O(n)
 		 */
 		rotate();
 		return currentState();
@@ -69,28 +69,28 @@ public class Polygon implements Rotatable {
 	@Override
 	public Direction getCurrDirection() {
 		/*
-		 * getter for current direction of rotation of the Polygon, either CLOCKWISE or COUNTERCLOCKWISE, uses Direction enum type
+		 * getter for current direction of rotation of the Polygon, either CLOCKWISE or COUNTERCLOCKWISE, uses Direction enum type O(1)
 		 */
 		return currDirection;
 	}
 	@Override
 	public void setCurrDirection(Direction d) {
 		/*
-		 * setter for current direction of rotation of the Polygon, either CLOCKWISE or COUNTERCLOCKWISE, uses Direction enum type
+		 * setter for current direction of rotation of the Polygon, either CLOCKWISE or COUNTERCLOCKWISE, uses Direction enum type O(1)
 		 */
 		this.currDirection = d;
 	}
 	@Override
 	public double getInterval() {
 		/*
-		 * Getter for current interval of rotation for the Polygon, represents how many radians the shape rotates every tick.
+		 * Getter for current interval of rotation for the Polygon, represents how many radians the shape rotates every tick. O(1)
 		 */
 		return interval;
 	}
 	@Override
 	public void setInterval(double interval) {
 		/*
-		 * Setter for current interval of rotation for the Polygon, represents how many radians the shape rotates every tick.
+		 * Setter for current interval of rotation for the Polygon, represents how many radians the shape rotates every tick. O(1)
 		 */
 		this.interval = interval;
 	}
@@ -100,7 +100,7 @@ public class Polygon implements Rotatable {
 		 * currentState() returns the current positions of all vertices of the polygon. The method calculates current position of each
 		 * vertex by starting at angle theta (private data) and adding 2pi/# of sides to calculate a cartesian point from a polar coordinate
 		 * representing the vertex. The resulting list contains each vertex only once, in the form of a CartesianPoint. The method assumes
-		 * the origin is the center of the circumscribed circle.
+		 * the origin is the center of the circumscribed circle. O(n)
 		 */
 		ArrayList<CartesianPoint> curr = new ArrayList<CartesianPoint>();
 		for(int i = 1; i < sides+1; i++){
@@ -111,7 +111,7 @@ public class Polygon implements Rotatable {
 	@Override
 	public void setRadius(double radius) {
 		/*
-		 * setter for the radius of the circumscribed circle, takes in double radius
+		 * setter for the radius of the circumscribed circle, takes in double radius O(1)
 		 */
 		this.radius = radius;
 		
@@ -119,21 +119,21 @@ public class Polygon implements Rotatable {
 	@Override
 	public double getRadius() {
 		/*
-		 * getter for the radius of the circumscribed circle, returns a double radius
+		 * getter for the radius of the circumscribed circle, returns a double radius O(1)
 		 */
 		return radius;
 	}
 	@Override
 	public void setTheta(double theta) {
 		/*
-		 * setter for current angle of the first vertex theta, takes in double theta
+		 * setter for current angle of the first vertex theta, takes in double theta O(1)
 		 */
 		this.theta = theta;
 	}
 	@Override
 	public double getTheta() {
 		/*
-		 * getter for current angle of the first vertex theta, returns double theta
+		 * getter for current angle of the first vertex theta, returns double theta O(1)
 		 */
 		return theta;
 	}

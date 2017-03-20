@@ -15,51 +15,51 @@ public class Line implements Rotatable {
 
 	public Direction getCurrDirection() {
 		/*
-		 * getter for current direction of rotation of the Line, either CLOCKWISE or COUNTERCLOCKWISE, uses Direction enum type
+		 * getter for current direction of rotation of the Line, either CLOCKWISE or COUNTERCLOCKWISE, uses Direction enum type, O(1)
 		 */
 		return currDirection;
 	}
 	public void setCurrDirection(Direction currDirection) {
 		/*
-		 * setter for current direction of rotation of the Line, either CLOCKWISE or COUNTERCLOCKWISE, uses Direction enum type
+		 * setter for current direction of rotation of the Line, either CLOCKWISE or COUNTERCLOCKWISE, uses Direction enum type, O(1)
 		 */
 		this.currDirection = currDirection;
 	}
 	public double getInterval() {
 		/*
-		 * Getter for current interval of rotation for the Line, represents how many radians the Line rotates every tick.
+		 * Getter for current interval of rotation for the Line, represents how many radians the Line rotates every tick. O(1)
 		 */
 		return interval;
 	}
 	public void setInterval(double interval) {
 		/*
-		 * Setter for current interval of rotation for the Line, represents how many radians the Line rotates every tick.
+		 * Setter for current interval of rotation for the Line, represents how many radians the Line rotates every tick. O(1)
 		 */
 		this.interval = interval;
 	}
 	public void setTheta(double theta) {
 		/*
-		 * setter for current angle of the first vertex theta, takes in double theta
+		 * setter for current angle of the first vertex theta, takes in double theta O(1)
 		 */
 		this.theta = theta;
 	}
 	public double getTheta(){
 		/*
-		 * getter for current angle of the first vertex theta, returns double theta
+		 * getter for current angle of the first vertex theta, returns double theta O(1)
 		 */
 		return theta;
 	}
 	@Override
 	public void setRadius(double radius) {
 		/*
-		 * setter for the radius of the bounding circle, takes in double radius
+		 * setter for the radius of the bounding circle, takes in double radius O(1)
 		 */
 		// TODO Auto-generated method stub
 		this.radius = radius;
 	}
 	public double getRadius(){
 		/*
-		 * getter for the radius of the bounding circle, returns a double radius
+		 * getter for the radius of the bounding circle, returns a double radius O(1)
 		 */
 		return radius;
 	}
@@ -69,7 +69,7 @@ public class Line implements Rotatable {
 		/* 
 		 * This constructor takes in Direction d (direction of rotation), double interval
 		 * (how many radians the Line shifts every rotation), and double radius (radius of the bounding circle), and sets
-		 * the relevant private data. Initial angle theta is set to 0.
+		 * the relevant private data. Initial angle theta is set to 0. O(1)
 		 */
 		this.currDirection = d;
 		this.interval = interval;
@@ -80,7 +80,7 @@ public class Line implements Rotatable {
 		/* 
 		 * This constructor takes in Direction d (direction of rotation), double interval
 		 * (how many radians the shape shifts every rotation), double radius (radius of the circumscribed circle), and double theta 
-		 * (initial angle of the first vertex compared to x axis), and sets the relevant private data. 
+		 * (initial angle of the first vertex compared to x axis), and sets the relevant private data. O(1)
 		 */
 		this.currDirection = d;
 		this.interval = interval;
@@ -99,7 +99,7 @@ public class Line implements Rotatable {
 	public ArrayList<CartesianPoint> nextState(){ 
 		/*
 		 * nextState() rotates the Line and then returns the state of the Line post rotation in the form of an ArrayList of
-		 * CartesianPoints that represent individual vertices of the Line. 
+		 * CartesianPoints that represent individual vertices of the Line. O(1)
 		 */
 		this.rotate();	
 		return currentState();
@@ -107,7 +107,7 @@ public class Line implements Rotatable {
 	public void rotate() {
 		/*
 		 * rotate() shifts the position of the Line by incrementing or decrementing the current angle theta of the first vertex.
-		 * Incrementing happens when the Line is rotating clockwise, and decrementing happens when the Line is rotating counterclockwise.
+		 * Incrementing happens when the Line is rotating clockwise, and decrementing happens when the Line is rotating counterclockwise. O(1)
 		 */
 		if(currDirection == Direction.CLOCKWISE) theta+=interval;
 		else theta-=interval;
@@ -117,7 +117,7 @@ public class Line implements Rotatable {
 		/*
 		 * currentState() returns the current positions of both vertices of the Line. The method calculates current position
 		 * of each vertex using polar coordinate conversions to cartesian (basically using principle that the line is formed
-		 * of point (r,theta) and (-r, theta)) The method assumes the mdpt of the line is the origin.
+		 * of point (r,theta) and (-r, theta)) The method assumes the mdpt of the line is the origin. O(1)
 		 */
 		ArrayList<CartesianPoint> result = new ArrayList<CartesianPoint>();
 		result.add(new CartesianPoint(radius,theta));
